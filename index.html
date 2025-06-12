@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OralCanvas3</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+ <body>
+  <div class="app-container">
+    <!-- キャンバスエリア：レイヤー構造に変更 -->
+    <div class="draw-area">
+      <!-- 各レイヤーをz-indexで重ね合わせ -->
+      <canvas id="background-layer" class="canvas-layer"></canvas>
+      <canvas id="freedraw-layer" class="canvas-layer"></canvas>
+      <canvas id="stamp-layer" class="canvas-layer"></canvas>
+      <canvas id="text-layer" class="canvas-layer"></canvas>
+      <canvas id="overlay-layer" class="canvas-layer"></canvas>
+      <div id="cursorContainer"></div>
+    </div>
+
+    <!-- ツールエリア（CSS はそのまま） -->
+    <div class="tool-area">
+      <!-- タブボタン：4つに増設 -->
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="DLW">DLW</button>
+        <button class="tab-button"         data-tab="DIAG">DIAG</button>
+        <button class="tab-button"         data-tab="PLN">PLN</button>
+        <button class="tab-button"         data-tab="REST">REST</button>
+      </div>
+
+      <!-- リロードボタン -->
+      <button class="reload-button">
+        <img src="Tool/Reload.png" alt="Reload">
+      </button>
+
+      <!-- タブコンテンツ領域：4つに合わせて用意 -->
+      <div class="tab-content">
+        <div id="DLW"  class="tab-pane active">
+           <button id="freeDrawBtn" class="tool-button"><img src="Tool/FreeDraw.png" alt="Free Draw"></button>
+                        <div class="color-buttons">
+                            <button class="color-button" data-color="black"><img src="Tool/C-Black.png" alt="Black"></button>
+                            <button class="color-button" data-color="red"><img src="Tool/C-Red.png" alt="Red"></button>
+                            <button class="color-button" data-color="blue"><img src="Tool/C-Blue.png" alt="Blue"></button>
+                        </div>
+                        <div class="line-width-buttons">
+                            <button class="line-width-button" data-width="2">細</button>
+                            <button class="line-width-button" data-width="5">中</button>
+                            <button class="line-width-button" data-width="10">太</button>
+                        </div>
+                        <button id="eraserBtn" class="tool-button"><img src="Tool/Eraser.png" alt="Eraser"></button>
+        </div>
+        <div id="DIAG" class="tab-pane">
+          <!-- DIAG用ツールをここに -->
+          <div class="tab-header">診断アイコン</div>
+          <div class="stamp-buttons diagnosis-icons">
+            <!-- 健全歯アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_healthtooth" data-icon-file="diagnosis/healthtooth.svg" title="健全歯 / HealthTooth">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/healthtooth.svg" alt="HealthTooth" class="icon-img">
+              </div>
+              <div class="icon-label">健全歯</div>
+            </button>
+            <!-- 虫歯アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_caries" data-icon-file="diagnosis/caries.svg" title="虫歯 / Caries">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/caries.svg" alt="Caries" class="icon-img">
+              </div>
+              <div class="icon-label">虫歯</div>
+            </button>
+            <!-- 二次カリエスアイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_2ndcaries" data-icon-file="diagnosis/2ndcaries.svg" title="二次カリエス / 2ndCaries">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/2ndcaries.svg" alt="2ndCaries" class="icon-img">
+              </div>
+              <div class="icon-label">二次カリエス</div>
+            </button>
+            <!-- 処置歯アイコン ★新規追加★ -->
+            <button class="icon-button" data-icon-id="diagnosis_syotisi" data-icon-file="diagnosis/syotisi.svg" title="処置歯 / Treated Tooth">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/syotisi.svg" alt="Treated Tooth" class="icon-img">
+              </div>
+              <div class="icon-label">処置歯</div>
+            </button>
+            <!-- 歯牙破折アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_toothfructure" data-icon-file="diagnosis/toothfructure.svg" title="歯牙破折 / ToothFructure">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/toothfructure.svg" alt="ToothFructure" class="icon-img">
+              </div>
+              <div class="icon-label">歯牙破折</div>
+            </button>
+            <!-- 歯髄炎アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_pul" data-icon-file="diagnosis/pul.svg" title="歯髄炎 / Pul">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/pul.svg" alt="Pul" class="icon-img">
+              </div>
+              <div class="icon-label">歯髄炎</div>
+            </button>
+            <!-- 急化Perアイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_kyukaper" data-icon-file="diagnosis/kyukaper.svg" title="急化Per / KyukaPer">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/kyukaper.svg" alt="KyukaPer" class="icon-img">
+              </div>
+              <div class="icon-label">急化Per</div>
+            </button>
+            <!-- 慢化Perアイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_mankaper" data-icon-file="diagnosis/mankaper.svg" title="慢化Per / MankaPer">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/mankaper.svg" alt="MankaPer" class="icon-img">
+              </div>
+              <div class="icon-label">慢化Per</div>
+            </button>
+            <!-- 歯根破折アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_rootfructure" data-icon-file="diagnosis/rootfructure.svg" title="歯根破折 / RootFructure">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/rootfructure.svg" alt="RootFructure" class="icon-img">
+              </div>
+              <div class="icon-label">歯根破折</div>
+            </button>
+            <!-- 歯石アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_calcus" data-icon-file="diagnosis/calcus.svg" title="歯石 / Calcus">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/calcus.svg" alt="Calcus" class="icon-img">
+              </div>
+              <div class="icon-label">歯石</div>
+            </button>
+            <!-- 歯周病アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_perio" data-icon-file="diagnosis/perio.svg" title="歯周病 / Perio">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/perio.svg" alt="Perio" class="icon-img">
+              </div>
+              <div class="icon-label">歯周病</div>
+            </button>
+            <!-- ホープレス歯アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_hopelesstooth" data-icon-file="diagnosis/hopelesstooth.svg" title="ホープレス歯 / HopelessTooth">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/hopelesstooth.svg" alt="HopelessTooth" class="icon-img">
+              </div>
+              <div class="icon-label">ホープレス歯</div>
+            </button>
+            <!-- 欠損歯アイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_missingtooth" data-icon-file="diagnosis/missingtooth.svg" title="欠損歯 / MissingTooth">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/missingtooth.svg" alt="MissingTooth" class="icon-img">
+              </div>
+              <div class="icon-label">欠損歯</div>
+            </button>
+            <!-- DTアイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_existing_dt" data-icon-file="diagnosis/existing_dt.svg" title="DT / DentureExisting">
+              <div class="icon-wrapper" style="background-color: #FFC0CB;">
+                <img src="Tool/icons/diagnosis/existing_dt.svg" alt="DentureExisting" class="icon-img">
+              </div>
+              <div class="icon-label">DT</div>
+            </button>
+            <!-- インプラントアイコン -->
+            <button class="icon-button" data-icon-id="diagnosis_existing_implant" data-icon-file="diagnosis/existing_implant.svg" title="インプラント / ImplantExisting">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/diagnosis/existing_implant.svg" alt="ImplantExisting" class="icon-img">
+              </div>
+              <div class="icon-label">インプラント</div>
+            </button>
+          </div>
+        </div>
+        <div id="PLN" class="tab-pane">
+          <!-- PLN用ツールをここに -->
+          <div class="tab-header">治療計画アイコン</div>
+          <div class="stamp-buttons treatment-plan-icons">
+            <!-- C処置アイコン -->
+            <button class="icon-button" data-icon-id="treatment_plan_cariest" data-icon-file="treatment_plan/cariest.svg" title="C処置 / CariesTr">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/treatment_plan/cariest.svg" alt="CariesTr" class="icon-img">
+              </div>
+              <div class="icon-label">C処置</div>
+            </button>
+            <!-- 抜髄アイコン -->
+            <button class="icon-button" data-icon-id="treatment_plan_pulpect" data-icon-file="treatment_plan/pulpect.svg" title="抜髄 / Pulpect">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/treatment_plan/pulpect.svg" alt="Pulpect" class="icon-img">
+              </div>
+              <div class="icon-label">抜髄</div>
+            </button>
+            <!-- RCTアイコン -->
+            <button class="icon-button" data-icon-id="treatment_plan_rct" data-icon-file="treatment_plan/rct.svg" title="RCT / RCT">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/treatment_plan/rct.svg" alt="RCT" class="icon-img">
+              </div>
+              <div class="icon-label">RCT</div>
+            </button>
+            <!-- 抜歯アイコン -->
+            <button class="icon-button" data-icon-id="treatment_plan_plan_toothext" data-icon-file="treatment_plan/plan_toothext.svg" title="抜歯 / ToothExtPlanned">
+              <div class="icon-wrapper" style="background-color: #FFB370;">
+                <img src="Tool/icons/treatment_plan/plan_toothext.svg" alt="ToothExtPlanned" class="icon-img">
+              </div>
+              <div class="icon-label">抜歯</div>
+            </button>
+            <!-- インプラントアイコン -->
+            <button class="icon-button" data-icon-id="treatment_plan_plan_implant" data-icon-file="treatment_plan/plan_implant.svg" title="インプラント / ImplantPlanned">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/treatment_plan/plan_implant.svg" alt="ImplantPlanned" class="icon-img">
+              </div>
+              <div class="icon-label">インプラント</div>
+            </button>
+          </div>
+        </div>
+        <div id="REST" class="tab-pane">
+          <!-- REST用ツールをここに -->
+          <div class="tab-header">修復物アイコン</div>
+          <div class="stamp-buttons restoration-icons">
+            <!-- CRアイコン -->
+            <button class="icon-button" data-icon-id="restoration_cr" data-icon-file="restoration/cr.svg" title="CR / Composite Resin">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/cr.svg" alt="Composite Resin" class="icon-img">
+              </div>
+              <div class="icon-label">CR</div>
+            </button>
+            <!-- インレーアイコン -->
+            <button class="icon-button" data-icon-id="restoration_in" data-icon-file="restoration/in.svg" title="In / Inlay">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/in.svg" alt="Inlay" class="icon-img">
+              </div>
+              <div class="icon-label">In</div>
+            </button>
+            <!-- ゴールドインレーアイコン -->
+            <button class="icon-button" data-icon-id="restoration_gin" data-icon-file="restoration/gin.svg" title="GIn / Gold Inlay">
+              <div class="icon-wrapper" style="background-color: #DAA520;">
+                <img src="Tool/icons/restoration/gin.svg" alt="Gold Inlay" class="icon-img">
+              </div>
+              <div class="icon-label">GIn</div>
+            </button>
+            <!-- CADインレーアイコン -->
+            <button class="icon-button" data-icon-id="restoration_cadin" data-icon-file="restoration/cadin.svg" title="CADIn / CAD Inlay">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/cadin.svg" alt="CAD Inlay" class="icon-img">
+              </div>
+              <div class="icon-label">CADIn</div>
+            </button>
+            <!-- ピンインレーアイコン -->
+            <button class="icon-button" data-icon-id="restoration_pin" data-icon-file="restoration/pin.svg" title="P.In / Pin Inlay">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/pin.svg" alt="Pin Inlay" class="icon-img">
+              </div>
+              <div class="icon-label">P.In</div>
+            </button>
+            <!-- 3/4クラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_3_4cr" data-icon-file="restoration/3_4cr.svg" title="3/4Cr. / 3/4 Crown">
+              <div class="icon-wrapper" style="background-color: #DDDDDD;">
+                <img src="Tool/icons/restoration/3_4cr.svg" alt="3/4 Crown" class="icon-img">
+              </div>
+              <div class="icon-label">3/4Cr.</div>
+            </button>
+            <!-- 4/5クラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_4_5cr" data-icon-file="restoration/4_5cr.svg" title="4/5Cr. / 4/5 Crown">
+              <div class="icon-wrapper" style="background-color: #DDDDDD;">
+                <img src="Tool/icons/restoration/4_5cr.svg" alt="4/5 Crown" class="icon-img">
+              </div>
+              <div class="icon-label">4/5Cr.</div>
+            </button>
+            <!-- フルメタルクラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_fmcr" data-icon-file="restoration/fmcr.svg" title="FMCr. / Full Metal Crown">
+              <div class="icon-wrapper" style="background-color: #DDDDDD;">
+                <img src="Tool/icons/restoration/fmcr.svg" alt="Full Metal Crown" class="icon-img">
+              </div>
+              <div class="icon-label">FMCr.</div>
+            </button>
+            <!-- ゴールドクラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_gcr" data-icon-file="restoration/gcr.svg" title="GCr. / Gold Crown">
+              <div class="icon-wrapper" style="background-color: #DAA520;">
+                <img src="Tool/icons/restoration/gcr.svg" alt="Gold Crown" class="icon-img">
+              </div>
+              <div class="icon-label">GCr.</div>
+            </button>
+            <!-- CADクラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_cadcr" data-icon-file="restoration/cadcr.svg" title="CADCr. / CAD Crown">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/cadcr.svg" alt="CAD Crown" class="icon-img">
+              </div>
+              <div class="icon-label">CADCr.</div>
+            </button>
+            <!-- ジルコニアクラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_zircr" data-icon-file="restoration/zircr.svg" title="ZirCr. / Zirconia Crown">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/zircr.svg" alt="Zirconia Crown" class="icon-img">
+              </div>
+              <div class="icon-label">ZirCr.</div>
+            </button>
+            <!-- メリーランドブリッジアイコン -->
+            <button class="icon-button" data-icon-id="restoration_mb" data-icon-file="restoration/mb.svg" title="MB / Maryland Bridge">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/mb.svg" alt="Maryland Bridge" class="icon-img">
+              </div>
+              <div class="icon-label">MB</div>
+            </button>
+            <!-- ジルコニアポーセレンクラウンアイコン -->
+            <button class="icon-button" data-icon-id="restoration_zirpcr" data-icon-file="restoration/zirpcr.svg" title="ZirPCr. / Zirconia Porcelain Crown">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/zirpcr.svg" alt="Zirconia Porcelain Crown" class="icon-img">
+              </div>
+              <div class="icon-label">ZirPCr.</div>
+            </button>
+            <!-- ブリッジアイコン -->
+            <button class="icon-button" data-icon-id="restoration_br" data-icon-file="restoration/br.svg" title="Br. / Bridge">
+              <div class="icon-wrapper" style="background-color: #AEDFF7;">
+                <img src="Tool/icons/restoration/br.svg" alt="Bridge" class="icon-img">
+              </div>
+              <div class="icon-label">Br.</div>
+            </button>
+            <!-- 義歯アイコン -->
+            <button class="icon-button" data-icon-id="restoration_dt" data-icon-file="restoration/dt.svg" title="DT / Denture">
+              <div class="icon-wrapper" style="background-color: #FFC0CB;">
+                <img src="Tool/icons/restoration/dt.svg" alt="Denture" class="icon-img">
+              </div>
+              <div class="icon-label">DT</div>
+            </button>
+            <!-- インプラントアイコン -->
+            <button class="icon-button" data-icon-id="restoration_imp" data-icon-file="restoration/imp.svg" title="インプラント / Implant">
+              <div class="icon-wrapper" style="background-color: #FFFFFF;">
+                <img src="Tool/icons/restoration/imp.svg" alt="Implant" class="icon-img">
+              </div>
+              <div class="icon-label">インプラント</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- スクリプト -->
+  <!-- 基本ユーティリティを最初に読み込む -->
+  <script src="JAVA/Utils.js"></script>
+  <script src="JAVA/DebugUtil.js"></script>
+  
+  <!-- データモデルとレイヤー管理 -->
+  <script src="JAVA/LayerManager.js"></script>
+  <script src="JAVA/CanvasDataModel.js"></script>
+  
+  <!-- モード関連のJSファイル -->
+  <script src="JAVA/StampMode.js"></script>
+  <script src="JAVA/PowerChainMode.js"></script>
+  <script src="JAVA/ElasticDrawMode.js"></script>
+  <script src="JAVA/FreeDrawMode.js"></script>
+  <script src="JAVA/EraserMode.js"></script>
+  <script src="JAVA/TextMode.js"></script>
+  
+  <!-- 管理クラス -->
+  <script src="JAVA/IconManager.js"></script>
+  <script src="JAVA/BackgroundManager.js"></script>
+  <script src="JAVA/ChangeBackImage.js"></script>
+  <!-- FileMakerFix.jsを一時的に無効化 -->
+  <!-- <script src="JAVA/FileMakerFix.js"></script> -->
+  
+  <!-- メインコード（最後に読み込む） -->
+  <script src="JAVA/Main.js"></script>
+  
+  <!-- 診断スクリプト（すべてのJSファイル読み込み後） -->
+  <script src="diagnostics.js"></script>
+  </body>
+</html>

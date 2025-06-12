@@ -1,0 +1,326 @@
+[
+  {
+    "id": "restoration_cr",
+    "category": "restoration",
+    "name_ja": "CR",
+    "name_en": "Composite Resin",
+    "file": "restoration/cr.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_in",
+    "category": "restoration",
+    "name_ja": "In",
+    "name_en": "Inlay",
+    "file": "restoration/in.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_gin",
+    "category": "restoration",
+    "name_ja": "GIn",
+    "name_en": "Gold Inlay",
+    "file": "restoration/gin.svg",
+    "style": "gold",
+    "bg_color": "#DAA520"
+  },
+  {
+    "id": "restoration_cadin",
+    "category": "restoration",
+    "name_ja": "CADIn",
+    "name_en": "CAD Inlay",
+    "file": "restoration/cadin.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_pin",
+    "category": "restoration",
+    "name_ja": "P.In",
+    "name_en": "Pin Inlay",
+    "file": "restoration/pin.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_3_4cr",
+    "category": "restoration",
+    "name_ja": "3/4Cr.",
+    "name_en": "3/4 Crown",
+    "file": "restoration/3_4cr.svg",
+    "style": "metal",
+    "bg_color": "#DDDDDD"
+  },
+  {
+    "id": "restoration_4_5cr",
+    "category": "restoration",
+    "name_ja": "4/5Cr.",
+    "name_en": "4/5 Crown",
+    "file": "restoration/4_5cr.svg",
+    "style": "metal",
+    "bg_color": "#DDDDDD"
+  },
+  {
+    "id": "restoration_fmcr",
+    "category": "restoration",
+    "name_ja": "FMCr.",
+    "name_en": "Full Metal Crown",
+    "file": "restoration/fmcr.svg",
+    "style": "metal",
+    "bg_color": "#DDDDDD"
+  },
+  {
+    "id": "restoration_gcr",
+    "category": "restoration",
+    "name_ja": "GCr.",
+    "name_en": "Gold Crown",
+    "file": "restoration/gcr.svg",
+    "style": "gold",
+    "bg_color": "#DAA520"
+  },
+  {
+    "id": "restoration_cadcr",
+    "category": "restoration",
+    "name_ja": "CADCr.",
+    "name_en": "CAD Crown",
+    "file": "restoration/cadcr.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_zircr",
+    "category": "restoration",
+    "name_ja": "ZirCr.",
+    "name_en": "Zirconia Crown",
+    "file": "restoration/zircr.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_mb",
+    "category": "restoration",
+    "name_ja": "MB",
+    "name_en": "Maryland Bridge",
+    "file": "restoration/mb.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_zirpcr",
+    "category": "restoration",
+    "name_ja": "ZirPCr.",
+    "name_en": "Zirconia Porcelain Crown",
+    "file": "restoration/zirpcr.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "restoration_br",
+    "category": "restoration",
+    "name_ja": "Br.",
+    "name_en": "Bridge",
+    "file": "restoration/br.svg",
+    "style": "bridge",
+    "bg_color": "#AEDFF7"
+  },
+  {
+    "id": "restoration_dt",
+    "category": "restoration",
+    "name_ja": "DT",
+    "name_en": "Denture",
+    "file": "restoration/dt.svg",
+    "style": "denture",
+    "bg_color": "#FFC0CB"
+  },
+  {
+    "id": "restoration_imp",
+    "category": "restoration",
+    "name_ja": "インプラント",
+    "name_en": "Implant",
+    "file": "restoration/imp.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_healthtooth",
+    "category": "diagnosis",
+    "name_ja": "健全歯",
+    "name_en": "HealthTooth",
+    "file": "diagnosis/healthtooth.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_caries",
+    "category": "diagnosis",
+    "name_ja": "虫歯",
+    "name_en": "Caries",
+    "file": "diagnosis/caries.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_2ndcaries",
+    "category": "diagnosis",
+    "name_ja": "二次カリエス",
+    "name_en": "2ndCaries",
+    "file": "diagnosis/2ndcaries.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_toothfructure",
+    "category": "diagnosis",
+    "name_ja": "歯牙破折",
+    "name_en": "ToothFructure",
+    "file": "diagnosis/toothfructure.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_pul",
+    "category": "diagnosis",
+    "name_ja": "歯髄炎",
+    "name_en": "Pul",
+    "file": "diagnosis/pul.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_kyukaper",
+    "category": "diagnosis",
+    "name_ja": "急化Per",
+    "name_en": "KyukaPer",
+    "file": "diagnosis/kyukaper.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_mankaper",
+    "category": "diagnosis",
+    "name_ja": "慢化Per",
+    "name_en": "MankaPer",
+    "file": "diagnosis/mankaper.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_rootfructure",
+    "category": "diagnosis",
+    "name_ja": "歯根破折",
+    "name_en": "RootFructure",
+    "file": "diagnosis/rootfructure.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_calcus",
+    "category": "diagnosis",
+    "name_ja": "歯石",
+    "name_en": "Calcus",
+    "file": "diagnosis/calcus.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_perio",
+    "category": "diagnosis",
+    "name_ja": "歯周病",
+    "name_en": "Perio",
+    "file": "diagnosis/perio.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_hopelesstooth",
+    "category": "diagnosis",
+    "name_ja": "ホープレス歯",
+    "name_en": "HopelessTooth",
+    "file": "diagnosis/hopelesstooth.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_missingtooth",
+    "category": "diagnosis",
+    "name_ja": "欠損歯",
+    "name_en": "MissingTooth",
+    "file": "diagnosis/missingtooth.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_existing_dt",
+    "category": "diagnosis",
+    "name_ja": "DT",
+    "name_en": "DentureExisting",
+    "file": "diagnosis/existing_dt.svg",
+    "style": "denture",
+    "bg_color": "#FFC0CB"
+  },
+  {
+    "id": "diagnosis_existing_implant",
+    "category": "diagnosis",
+    "name_ja": "インプラント",
+    "name_en": "ImplantExisting",
+    "file": "diagnosis/existing_implant.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "diagnosis_syotisi",
+    "category": "diagnosis",
+    "name_ja": "初期齲蝕",
+    "name_en": "Initial Caries",
+    "file": "diagnosis/syotisi.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "treatment_plan_cariest",
+    "category": "treatment_plan",
+    "name_ja": "C処置",
+    "name_en": "CariesTr",
+    "file": "treatment_plan/cariest.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "treatment_plan_pulpect",
+    "category": "treatment_plan",
+    "name_ja": "抜髄",
+    "name_en": "Pulpect",
+    "file": "treatment_plan/pulpect.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "treatment_plan_rct",
+    "category": "treatment_plan",
+    "name_ja": "RCT",
+    "name_en": "RCT",
+    "file": "treatment_plan/rct.svg",
+    "style": "standard",
+    "bg_color": "#FFFFFF"
+  },
+  {
+    "id": "treatment_plan_plan_toothext",
+    "category": "treatment_plan",
+    "name_ja": "抜歯",
+    "name_en": "ToothExtPlanned",
+    "file": "treatment_plan/plan_toothext.svg",
+    "style": "standard",
+    "bg_color": "#FFB370"
+  },
+  {
+    "id": "treatment_plan_plan_implant",
+    "category": "treatment_plan",
+    "name_ja": "インプラント",
+    "name_en": "ImplantPlanned",
+    "file": "treatment_plan/plan_implant.svg",
+    "style": "esthetic",
+    "bg_color": "#FFFFFF"
+  }
+]
